@@ -14,8 +14,11 @@ use App\Http\Controllers\PageController;
 |
 */
 
+Route::get('/', [PageController::class, 'home']);
+
+
 Route::group(['middleware' => ['auth:admin']], function () {
-    Route::get('/dashboard', [PageController::class, 'dashboard']);
+    // Route::get('/dashboard', [PageController::class, 'dashboard']);
     Route::get('/dashboard/cars', [PageController::class, 'dashboardCars']);
     // Route::get('/dashboard/cars/{id}', [PageController::class, 'dashboardCar']);
     // Route::get('/dashboard/cars/mades/{made}', [PageController::class, 'dashboardMades']);

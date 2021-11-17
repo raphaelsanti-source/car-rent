@@ -30,7 +30,7 @@ Route::get('/cars/type/{type}', [CarController::class, 'searchType']);
 
 //?? User's routes handling
 Route::post('/usr/register', [UserAuthController::class, 'register']);
-Route::post('/usr/login', [AdminAuthController::class, 'login']);
+Route::post('/usr/login', [UserAuthController::class, 'login']);
 
 Route::group(['middleware' => ['auth:users']], function () {
     Route::post('/usr/logout', [UserAuthController::class, 'logout']);
