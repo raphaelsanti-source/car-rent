@@ -1,18 +1,17 @@
-<script>
-    import auth from "../stores/auth";
-    if ($auth.key != null) {
-        window.location.href = "/#/profile";
-    }
+@extends('login')
 
-    let email = "";
-    let password = "";
+@section('content')
+<script>
+    const authKey = window.localStorage.getItem("adminKey");
     const login = async () => {
+        let email = document.getElementById("email").value;
+        let password = document.getElementById("passwd").value;
         if (email == "" || password == "") {
             alert("Uzupełnij dane logowania");
         } else {
             let status = "";
             let resp = "";
-            await fetch("/api/usr/login", {
+            await fetch("/api/adm/login", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -28,43 +27,36 @@
                     resp = await data;
                 });
             if (status == 201) {
-                $auth.key = resp.token;
-                $auth.id = parseInt(resp.user.id);
-                console.log(resp.user.name);
-                $auth.name = resp.user.name;
-                $auth.email = resp.user.email;
-                window.localStorage.setItem("apiKey", resp.token);
-                window.localStorage.setItem("userId", parseInt(resp.user.id));
-                window.localStorage.setItem("userEmail", resp.user.email);
-                window.localStorage.setItem("userName", resp.user.name);
-                window.location.href = "/#/profile";
+                window.localStorage.setItem("adminKey", resp.token);
+                window.location.href = "/admin/dashboard";
             } else {
                 alert(resp.message);
             }
         }
     };
 </script>
-
-<div class="w-100 h-screen flex justify-center items-center bg-blue-500">
+<div class="w-100 h-screen flex justify-center items-center bg-redish">
     <div class="p-7 flex flex-col bg-whiter rounded-lg">
         <h2 class="font-semibold text-gray-500 text-lg">CarRent</h2>
         <h1 class="font-bold text-gray-700 text-3xl mb-5">Zaloguj się</h1>
         <label>E-mail:</label>
         <input
-            bind:value={email}
+            id="email"
             type="text"
             class="p-2 bg-blue-300 border-black border-solid border-b-2 outline-none"
         />
         <label class="mt-2">Hasło:</label>
         <input
-            bind:value={password}
+            id="passwd"
             type="password"
             class="p-2 bg-blue-300 border-black border-solid border-b-2 outline-none"
         />
         <button
-            on:click={login}
-            class="bg-blue-500 rounded-lg mt-5 p-2 text-whiter border-2 border-transparent hover:border-solid hover:border-blue-500 hover:text-blue-500 hover:bg-whiter transition duration-300"
+            onclick="login()"
+            class="bg-redish rounded-lg mt-5 p-2 text-whiter border-2 border-transparent hover:border-solid hover:border-redish hover:text-redish hover:bg-whiter transition duration-300"
             >Zaloguj</button
         >
     </div>
 </div>
+
+@endsection

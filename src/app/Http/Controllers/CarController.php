@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Car;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class CarController extends Controller
 {
@@ -14,7 +15,12 @@ class CarController extends Controller
      */
     public function index()
     {
-        return Car::all();
+        // return Car::all();
+        return DB::table('cars')
+            ->join('types', 'type_id', '=', 'types.id')
+            ->join('mades', 'made_id', '=', 'mades.id')
+            ->select('cars.*', 'mades.made', 'types.type')
+            ->get();
     }
 
     /**
@@ -26,10 +32,10 @@ class CarController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'made' => 'required',
+            'made_id' => 'required',
             'model' => 'required',
             'year' => 'required',
-            'type' => 'required',
+            'type_id' => 'required',
             'price' => 'required',
         ]);
         return Car::create($request->all());

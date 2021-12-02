@@ -14,13 +14,25 @@ use App\Http\Controllers\PageController;
 |
 */
 
+//?? User xd
 Route::get('/', [PageController::class, 'home']);
 
+//?? Admin 😎
 
-Route::group(['middleware' => ['auth:admin']], function () {
-    // Route::get('/dashboard', [PageController::class, 'dashboard']);
-    Route::get('/dashboard/cars', [PageController::class, 'dashboardCars']);
-    // Route::get('/dashboard/cars/{id}', [PageController::class, 'dashboardCar']);
-    // Route::get('/dashboard/cars/mades/{made}', [PageController::class, 'dashboardMades']);
-    // Route::get('/dashboard/cars/types/{type}', [PageController::class, 'dashboardTypes']);
-});
+//!! Auth
+Route::get('/admin', [PageController::class, 'adminLogin']);
+Route::get('/admin/logout', [PageController::class, 'adminLogout']);
+
+//?? Functionals
+Route::get('/admin/dashboard', [PageController::class, 'dashboard']);
+Route::get('/admin/cars', [PageController::class, 'dashboardCars']);
+Route::get('/admin/cars/{id}', [PageController::class, 'dashboardCar']);
+
+// Scrap
+// Route::group(['middleware' => ['auth:admin']], function () {
+//     // Route::get('/dashboard', [PageController::class, 'dashboard']);
+//     Route::get('/dashboard/cars', [PageController::class, 'dashboardCars']);
+//     // Route::get('/dashboard/cars/{id}', [PageController::class, 'dashboardCar']);
+//     // Route::get('/dashboard/cars/mades/{made}', [PageController::class, 'dashboardMades']);
+//     // Route::get('/dashboard/cars/types/{type}', [PageController::class, 'dashboardTypes']);
+// });

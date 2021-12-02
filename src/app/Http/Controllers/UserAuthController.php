@@ -40,6 +40,7 @@ class UserAuthController extends Controller
         return [
             'message' => 'Logged out.'
         ];
+        // return response(200);
     }
 
     public function login(Request $request)

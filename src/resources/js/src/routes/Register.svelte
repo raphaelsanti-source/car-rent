@@ -38,7 +38,13 @@
                 });
             if (status == 201) {
                 $auth.key = resp.token;
+                $auth.id = parseInt(resp.user.id);
+                $auth.name = resp.user.name;
+                $auth.email = resp.user.email;
                 window.localStorage.setItem("apiKey", resp.token);
+                window.localStorage.setItem("userId", parseInt(resp.user.id));
+                window.localStorage.setItem("userEmail", resp.user.email);
+                window.localStorage.setItem("userName", resp.user.name);
                 window.location.href = "/#/profile";
             } else {
                 alert(resp.message);

@@ -8,6 +8,7 @@
     import NotFound from "./routes/NotFound.svelte";
     import Profile from "./routes/Profile.svelte";
     import Cars from "./routes/Cars.svelte";
+    import Reservation from "./routes/Reservation.svelte";
     // Partials
     import HeaderFirst from "./partials/HeaderFirst.svelte";
     import Header from "./partials/Header.svelte";
@@ -30,6 +31,7 @@
         "/logout": Logout,
         "/profile": Profile,
         "/cars": Cars,
+        "/reservation/:id": Reservation,
         "/xd": NotFound,
     }}
 />
