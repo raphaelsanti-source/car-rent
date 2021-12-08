@@ -9,6 +9,8 @@
     import Profile from "./routes/Profile.svelte";
     import Cars from "./routes/Cars.svelte";
     import Reservation from "./routes/Reservation.svelte";
+    import Qr from "./routes/Qr.svelte";
+
     // Partials
     import HeaderFirst from "./partials/HeaderFirst.svelte";
     import Header from "./partials/Header.svelte";
@@ -33,6 +35,7 @@
         "/cars": Cars,
         "/reservation/:id": Reservation,
         "/xd": NotFound,
+        "/qr/:number": Qr,
     }}
 />
 <Footer />

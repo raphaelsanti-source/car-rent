@@ -17,4 +17,7 @@
     <h3 class="font-bold text-gray-700 text-lg">
         {email}
     </h3>
+    <h3 class="text-md hover:text-blue-500 transition duration-300">
+        <a href="/assets/regulamin.pdf" target="_blank"> Regulamin usługi </a>
+    </h3>
 </div>

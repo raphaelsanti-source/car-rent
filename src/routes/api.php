@@ -31,6 +31,7 @@ Route::get('/cars', [CarController::class, 'index']);
 Route::get('/cars/{id}', [CarController::class, 'show']);
 Route::get('/cars/made/{made}', [CarController::class, 'searchMade']);
 Route::get('/cars/type/{type}', [CarController::class, 'searchType']);
+Route::get('/check/{id}', [ReservationController::class, 'checkAvailability']);
 
 
 //!! AUTH SECTION
@@ -43,7 +44,7 @@ Route::group(['middleware' => ['auth:users']], function () {
     Route::post('/usr/logout', [UserAuthController::class, 'logout']);
 
     Route::post('/reservations', [ReservationController::class, 'store']);
-    Route::post('/user_reservations', [ReservationController::class, 'showUsersReservations']);
+    Route::get('/user_reservations/{id}', [ReservationController::class, 'showUsersReservations']);
     Route::put('/change_reservation', [ReservationController::class, 'changeStatus']);
 });
 
@@ -70,6 +71,6 @@ Route::group(['middleware' => ['auth:admins']], function () {
     Route::delete('/usr/show/{id}', [UserController::class, 'destroy']);
 
     //?? Reservations
-    Route::put('/usr/reservations/{id}', [ReservationController::class, 'update']);
+    Route::put('/reservations/{id}', [ReservationController::class, 'update']);
     Route::delete('/usr/reservations/{id}', [ReservationController::class, 'destroy']);
 });

@@ -7,7 +7,7 @@
     if ($auth.key == null) {
         window.location.href = "/#/login";
     }
-    console.log($auth);
+    // console.log($auth);
     const change = async (id, operation) => {
         let status;
         await fetch("/api/change_reservation", {
@@ -30,6 +30,9 @@
             alert("Wystąpił problem podczas operacji.");
         }
     };
+    const qr = () => {
+        window.location.href = "/#/qr/" + $auth.name + "|" + $auth.email;
+    };
 </script>
 
 <div class="max-w-6xl mx-auto px-4 py-4 sm:py-4 md:py-2">
@@ -49,7 +52,10 @@
                         <h4 class="font-semibold text-gray-500 text-sm">
                             Numer rezerwacji: {item.id}
                         </h4>
-                        <h3 class="font-bold text-gray-700 text-lg">
+                        <h3
+                            class="font-bold text-gray-700 text-lg"
+                            id="info-qr"
+                        >
                             {item.made}
                             {item.model}
                             {item.year}
@@ -117,9 +123,23 @@
                     {#if item.status == "ongoing"}
                         <div class="flex flex-col ml-5">
                             <button
+                                on:click={() => qr()}
+                                class="bg-blue-500 rounded-lg mt-5 p-2 text-whiter border-2 border-transparent hover:border-solid hover:border-blue-500 hover:text-blue-500 hover:bg-whiter transition duration-300"
+                                >QR</button
+                            >
+                            <button
                                 on:click={() => change(item.id, "ended")}
                                 class="bg-blue-500 rounded-lg mt-5 p-2 text-whiter border-2 border-transparent hover:border-solid hover:border-blue-500 hover:text-blue-500 hover:bg-whiter transition duration-300"
                                 >Zakończ</button
+                            >
+                        </div>
+                    {/if}
+                    {#if item.status == "accepted"}
+                        <div class="flex flex-col ml-5">
+                            <button
+                                on:click={() => change(item.id, "ongoing")}
+                                class="bg-green-500 rounded-lg mt-5 p-2 text-whiter border-2 border-transparent hover:border-solid hover:border-green-500 hover:text-green-500 hover:bg-whiter transition duration-300"
+                                >Rozpocznij</button
                             >
                         </div>
                     {/if}

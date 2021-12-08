@@ -49,7 +49,13 @@ class CarController extends Controller
      */
     public function show($id)
     {
-        return Car::find($id);
+        // return Car::find($id);
+        return DB::table('cars')
+            ->join('types', 'type_id', '=', 'types.id')
+            ->join('mades', 'made_id', '=', 'mades.id')
+            ->select('cars.*', 'mades.made', 'types.type')
+            ->where('cars.id', '=', $id)
+            ->get();
     }
 
     /**
