@@ -33,6 +33,8 @@ Route::get('/cars/made/{made}', [CarController::class, 'searchMade']);
 Route::get('/cars/type/{type}', [CarController::class, 'searchType']);
 Route::get('/check/{id}', [ReservationController::class, 'checkAvailability']);
 
+Route::get('/types', [TypeController::class, 'index']);
+Route::get('/mades', [MadeController::class, 'index']);
 
 //!! AUTH SECTION
 

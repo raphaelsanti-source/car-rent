@@ -1,6 +1,6 @@
 <script>
     import auth from "../stores/auth";
-    if ($auth.key == null) {
+    if ($auth.key == null || window.localStorage.getItem("prolonged")) {
         window.location.href = "/";
     }
     export let params;
@@ -29,7 +29,8 @@
             current.setDate(current.getDate() + 2);
             const start = Date.parse(payload.start_date);
             const end = Date.parse(payload.end_date);
-            if (end > start && start > current) {
+            //&& start > current
+            if (end > start) {
                 payload.start_date = payload.start_date.replace("T", " ");
                 payload.end_date = payload.end_date.replace("T", " ");
                 let status;

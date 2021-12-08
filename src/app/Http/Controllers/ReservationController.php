@@ -29,6 +29,10 @@ class ReservationController extends Controller
             'start_date' => 'required',
             'end_date' => 'required',
         ]);
+        $today = strtotime(date('Y-m-d'));
+        $end = strtotime(substr($request['end_date'], 0, 10));
+        $days = $end - $today;
+        $request['days_until'] = $days / 86400;
         return Reservation::create($request->all());
     }
 
@@ -104,7 +108,13 @@ class ReservationController extends Controller
             'id',
             'operation'
         ]);
-        $car = Reservation::find($request['id']);
-        $car->update(['status' => $request['operation']]);
+        if ($request['operation'] == 'ended') {
+            $car = Reservation::find($request['id']);
+            $car->update(['status' => $request['operation']]);
+            $car->update(['prolonged' => 0]);
+        } else {
+            $car = Reservation::find($request['id']);
+            $car->update(['status' => $request['operation']]);
+        }
     }
 }

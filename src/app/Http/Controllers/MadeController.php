@@ -7,6 +7,11 @@ use Illuminate\Http\Request;
 
 class MadeController extends Controller
 {
+    public function index()
+    {
+        $types = Made::all();
+        return $types;
+    }
     public function store(Request $request)
     {
         $request->validate([

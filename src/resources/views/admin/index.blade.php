@@ -103,9 +103,9 @@
 <div class="max-w-6xl mx-auto px-4 py-4 sm:py-4 md:py-2 flex flex-wrap">
     <div class="w-full p-2">
         <h1 class="text-3xl">Admin panel</h1>
-        <h2 class="text-2xl">16:50</h2>
+        {{-- <h2 class="text-2xl">16:50</h2> --}}
     </div>
-    <div class="w-100 md:w-1/2 p-4 flex flex-col">
+    {{-- <div class="w-100 md:w-1/2 p-4 flex flex-col">
         <h2 class="text-lg">Advance time</h2>
         <div class="flex flex-row">
             <button class="w-16 border-2 border-solid border-black p-2 m-1 rounded-md hover:text-white hover:bg-redish hover:border-transparent transition duration-300">-24h</button>
@@ -113,7 +113,7 @@
             <button class="w-16 border-2 border-solid border-black p-2 m-1 rounded-md hover:text-white hover:bg-redish hover:border-transparent transition duration-300">+1h</button>
             <button class="w-16 border-2 border-solid border-black p-2 m-1 rounded-md hover:text-white hover:bg-redish hover:border-transparent transition duration-300">+24h</button>
         </div>
-    </div>
+    </div> --}}
     <div class="w-100 md:w-1/2 p-4 flex flex-col">
         <h2 class="text-lg">Add made</h2>
         <input id="new-made" type="text" class="w-48 border-2 border-solid border-black p-2 m-1 rounded-md">
